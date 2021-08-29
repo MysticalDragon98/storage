@@ -1,0 +1,20 @@
+{
+  "name": "@mysticaldragon/storage",
+  "version": "1.0.0",
+  "description": "Proxy based storage system.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MysticalDragon98/storage"
+  },
+  "main": "build/index.js",
+  "license": "MIT",
+  "types": "build/index.d.ts",
+  "dependencies": {
+    "@mysticaldragon/proxies": "^1.0.0",
+    "@types/node": "^16.7.6",
+    "typescript": "^4.3.5"
+  },
+  "scripts": {
+    "build": "tsc"
+  }
+}
