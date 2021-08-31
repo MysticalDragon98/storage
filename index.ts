@@ -26,7 +26,11 @@ export class Storage {
             recursive: false,
 
             get: (path)  => {
-                return new JSONStorage(this, this.path("json/" + path + ".json")).proxy;
+                const store = new JSONStorage(this, this.path("json/" + path + ".json"));
+
+                store.init();
+                
+                return store.proxy;
             }
         });
     }
