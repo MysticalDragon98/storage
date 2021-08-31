@@ -65,7 +65,8 @@ var JSONStorage = /** @class */ (function () {
     JSONStorage.prototype.init = function () {
         if (this._initialized)
             return;
-        this._cache = this.storage.readSync(this.path, {});
+        var fileData = this.storage.readSync(this.path, {});
+        this._cache = fileData instanceof Buffer ? JSON.parse(fileData.toString()) : {};
         this._initialized = true;
     };
     JSONStorage.prototype.get = function (props) {

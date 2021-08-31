@@ -30,7 +30,8 @@ export class JSONStorage<T> {
     init () {
         if (this._initialized) return;
 
-        this._cache = this.storage.readSync(this.path, {});
+        const fileData = this.storage.readSync(this.path, {});
+        this._cache = fileData instanceof Buffer? JSON.parse(fileData.toString()) : {};
         this._initialized = true;
     }
 
