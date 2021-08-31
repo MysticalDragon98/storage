@@ -5,7 +5,6 @@ export declare class Storage {
     private options;
     private _streams;
     json: any;
-    env: any;
     constructor(options: StorageOptions);
     init(): Promise<void>;
     path(path: string): string;

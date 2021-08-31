@@ -13,7 +13,6 @@ export class Storage {
     
     private _streams: { [key: string]: WritableStream } = {};
     public json: any;
-    public env: any;
 
     constructor (private options: StorageOptions) {
 
@@ -27,11 +26,9 @@ export class Storage {
             recursive: false,
 
             get: (path)  => {
-                return new JSONStorage(this, this.path("/json/" + path + ".json")).proxy;
+                return new JSONStorage(this, this.path("json/" + path + ".json")).proxy;
             }
         });
-
-        this.env = this.json.env.proxy;
     }
 
     path (path: string) {

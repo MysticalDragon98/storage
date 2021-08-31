@@ -62,10 +62,9 @@ var Storage = /** @class */ (function () {
                         this.json = proxies_1.ElasticProxy.new({
                             recursive: false,
                             get: function (path) {
-                                return new json_storage_1.JSONStorage(_this, _this.path("/json/" + path + ".json")).proxy;
+                                return new json_storage_1.JSONStorage(_this, _this.path("json/" + path + ".json")).proxy;
                             }
                         });
-                        this.env = this.json.env.proxy;
                         return [2 /*return*/];
                 }
             });
