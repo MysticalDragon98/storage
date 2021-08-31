@@ -1,6 +1,6 @@
 {
   "name": "@mysticaldragon/storage",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Proxy based storage system.",
   "repository": {
     "type": "git",
