@@ -49,15 +49,13 @@ var JSONStorage = /** @class */ (function () {
     Object.defineProperty(JSONStorage.prototype, "proxy", {
         get: function () {
             var _this = this;
-            return proxies_1.ElasticProxy.newRecursive({
-                recursive: true,
-                apply: function (path, args) {
-                    if (args.length === 1) {
-                        return _this.set(path, args[0]);
-                    }
-                    else {
-                        return _this.get(path);
-                    }
+            return proxies_1.ElasticProxy.new({
+                recursive: false,
+                get: function (prop) {
+                    return _this.get([prop]);
+                },
+                set: function (prop, val) {
+                    return _this.set([prop], val);
                 }
             });
         },

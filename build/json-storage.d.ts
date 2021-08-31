@@ -1,5 +1,5 @@
 import { Storage } from "./index";
-export declare class JSONStorage {
+export declare class JSONStorage<T> {
     private storage;
     path: string;
     private _cache;

@@ -1,7 +1,7 @@
 import { Storage } from "./index";
 import { ElasticProxy } from "@mysticaldragon/proxies";
 
-export class JSONStorage {
+export class JSONStorage<T> {
 
     private _cache: any;
     private _initialized: boolean = false;
@@ -13,16 +13,17 @@ export class JSONStorage {
     }
 
     get proxy () {
-        return ElasticProxy.newRecursive({
-            recursive: true,
+        return ElasticProxy.new({
+            recursive: false,
 
-            apply: (path: string[], args: any[]) => {
-                if (args.length === 1) {
-                    return this.set(path, args[0]);
-                } else {
-                    return this.get(path);
-                }
+            get: (prop: string): T => {
+                return this.get([prop])
+            },
+
+            set: (prop: string, val: T) => {
+                return this.set([prop], val);
             }
+
         })
     }
 
