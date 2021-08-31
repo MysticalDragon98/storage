@@ -42,6 +42,7 @@ var _a = require('fs'), createWriteStream = _a.createWriteStream, readFileSync =
 var json_storage_1 = require("./json-storage");
 var proxies_1 = require("@mysticaldragon/proxies");
 var path_1 = require("path");
+var path_2 = require("path");
 var Storage = /** @class */ (function () {
     function Storage(options) {
         this.options = options;
@@ -52,16 +53,16 @@ var Storage = /** @class */ (function () {
             var _this = this;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.mkdir("storage")];
+                    case 0: return [4 /*yield*/, this.mkdir(this.options.dir)];
                     case 1:
                         _a.sent();
-                        return [4 /*yield*/, this.mkdir("storage/json")];
+                        return [4 /*yield*/, this.mkdir((0, path_2.join)(this.options.dir, "json"))];
                     case 2:
                         _a.sent();
                         this.json = proxies_1.ElasticProxy.new({
                             recursive: false,
                             get: function (path) {
-                                return new json_storage_1.JSONStorage(_this, "storage/json/" + path + ".json").proxy;
+                                return new json_storage_1.JSONStorage(_this, _this.path("/json/" + path + ".json")).proxy;
                             }
                         });
                         this.env = this.json.env.proxy;

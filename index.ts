@@ -3,6 +3,7 @@ const { createWriteStream, readFileSync, writeFileSync } = require('fs');
 import { JSONStorage } from "./json-storage";
 import { ElasticProxy } from "@mysticaldragon/proxies";
 import { resolve } from "path";
+import { join } from "path";
 
 interface StorageOptions {
     dir: string;
@@ -19,14 +20,14 @@ export class Storage {
     }
     
     async init () {
-        await this.mkdir("storage");
-        await this.mkdir("storage/json");
+        await this.mkdir(this.options.dir);
+        await this.mkdir(join(this.options.dir, "json"));
 
         this.json = ElasticProxy.new({
             recursive: false,
 
             get: (path)  => {
-                return new JSONStorage(this, "storage/json/" + path + ".json").proxy;
+                return new JSONStorage(this, this.path("/json/" + path + ".json")).proxy;
             }
         });
 
