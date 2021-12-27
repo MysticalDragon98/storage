@@ -13,6 +13,7 @@ export class Storage {
     
     private _streams: { [key: string]: WritableStream } = {};
     public json: any;
+    public jsonStorages: { [key: string]: any } = {};
 
     constructor (private options: StorageOptions) {
 
@@ -26,11 +27,13 @@ export class Storage {
             recursive: false,
 
             get: (path)  => {
+                if (this.jsonStorages[path]) return this.jsonStorages[path];
+
                 const store = new JSONStorage(this, this.path("json/" + path + ".json"));
 
                 store.init();
                 
-                return store.proxy;
+                return this.jsonStorages[path] = store.proxy;
             }
         });
     }

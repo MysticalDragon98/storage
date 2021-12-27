@@ -67,7 +67,6 @@ export class JSONStorage<T> {
     }
 
     async save () {
-        
         if (this._isSaving) {
             this._isQueued = true;
             return;
